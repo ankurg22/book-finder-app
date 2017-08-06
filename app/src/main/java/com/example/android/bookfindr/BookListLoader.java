@@ -29,7 +29,6 @@ public class BookListLoader extends AsyncTaskLoader<List<Book>> {
             return null;
         }
 
-        List<Book> books = QueryUtils.fetchBookData(mUrl);
-        return books;
+        return QueryUtils.fetchBookData(mUrl);
     }
 }

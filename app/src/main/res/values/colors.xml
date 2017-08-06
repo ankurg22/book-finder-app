@@ -8,4 +8,5 @@
     <color name="textOnPrimary">#93000000</color>
     <color name="background">#EBEFFE</color>
     <color name="shade">#72DBF4</color>
+    <color name="shadeDark">#528ba7</color>
 </resources>

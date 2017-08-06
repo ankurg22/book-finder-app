@@ -25,6 +25,7 @@ import java.util.List;
 public class QueryUtils {
     private static final String TAG = QueryUtils.class.getSimpleName();
 
+    private static final String KEY_TOTAL_ITEMS = "totalItems";
     private static final String KEY_ITEMS = "items";
     private static final String KEY_VOLUME_INFO = "volumeInfo";
     private static final String KEY_TITLE = "title";
@@ -165,46 +166,76 @@ public class QueryUtils {
 
         try {
             JSONObject baseJsonResponse = new JSONObject(bookJSON);
-
-            JSONArray itemsArray = baseJsonResponse.getJSONArray(KEY_ITEMS);
+            int numOfItems = baseJsonResponse.getInt(KEY_TOTAL_ITEMS);
+            if (numOfItems <= 0) return null;
+            JSONArray itemsArray = baseJsonResponse.optJSONArray(KEY_ITEMS);
 
             for (int i = 0; i < itemsArray.length(); i++) {
+                String title = null;
+                String author = null;
+                String publisher = null;
+                String publishedDate = null;
+                String description = null;
+                int pageCount = 0;
+                String printType = null;
+                String category = null;
+                double rating = 0;
+                String thumbnail = null;
+                boolean isEbook = false;
+                double amount = 0;
+                String currency = null;
+                boolean isPdf = false;
+                boolean isEpub = false;
+
                 JSONObject itemObject = itemsArray.getJSONObject(i);
 
                 //Extract required objects from item
-                JSONObject volumeInfo = itemObject.getJSONObject(KEY_VOLUME_INFO);
-                JSONObject saleInfo = itemObject.getJSONObject(KEY_SALE_INFO);
-                JSONObject accessInfo = itemObject.getJSONObject(KEY_ACCESS_INFO);
+                JSONObject volumeInfo = itemObject.optJSONObject(KEY_VOLUME_INFO);
+                JSONObject saleInfo = itemObject.optJSONObject(KEY_SALE_INFO);
+                JSONObject accessInfo = itemObject.optJSONObject(KEY_ACCESS_INFO);
 
                 //Extract details from volumeInfo
-                String title = volumeInfo.getString(KEY_TITLE);
-                String author = volumeInfo.getJSONArray(KEY_AUTHORS).getString(0);
-                String publisher = volumeInfo.getString(KEY_PUBLISHER);
-                String publishedDate = volumeInfo.getString(KEY_PUBLISHED_DATE);
-                String description = volumeInfo.getString(KEY_DESCRIPTION);
-                int pageCount = volumeInfo.getInt(KEY_PAGE_COUNT);
-                String printType = volumeInfo.getString(KEY_PRINT_TYPE);
-                String category = volumeInfo.getJSONArray(KEY_CATEGORIES).getString(0);
-                double rating = volumeInfo.optDouble(KEY_AVERAGE_RATING, 0);
-                String thumbnail = volumeInfo.getJSONObject(KEY_IMAGE_LINKS).getString(KEY_THUMBNAIL);
+                if (volumeInfo != null) {
+                    title = volumeInfo.optString(KEY_TITLE);
+                    JSONArray authorJson = volumeInfo.optJSONArray(KEY_AUTHORS);
+                    if (authorJson != null) author = authorJson.optString(0, "");
+                    publisher = volumeInfo.optString(KEY_PUBLISHER);
+                    publishedDate = volumeInfo.optString(KEY_PUBLISHED_DATE);
+                    description = volumeInfo.optString(KEY_DESCRIPTION);
+                    pageCount = volumeInfo.optInt(KEY_PAGE_COUNT);
+                    printType = volumeInfo.optString(KEY_PRINT_TYPE);
+                    JSONArray categoryJson = volumeInfo.optJSONArray(KEY_CATEGORIES);
+                    if (categoryJson != null) category = categoryJson.optString(0, "");
+                    rating = volumeInfo.optDouble(KEY_AVERAGE_RATING, 0);
+                    JSONObject thumbnailJson = volumeInfo.optJSONObject(KEY_IMAGE_LINKS);
+                    if (thumbnailJson != null) thumbnail = thumbnailJson.optString(KEY_THUMBNAIL);
+                }
 
                 //Extract Sale Info
-                String saleability = saleInfo.getString(KEY_SALEABILITY);
-                boolean isEbook = saleInfo.getBoolean(KEY_IS_EBOOK);
-                //Certain objects are available only available if eBook is avilable. Hence the optJSONObject
-                double amount = 0;
-                String currency = "";
-                JSONObject listPrice = saleInfo.optJSONObject(KEY_LIST_PRICE);
-                if (listPrice != null) {
-                    amount = listPrice.optInt(KEY_AMOUNT, 0);
-                    currency = listPrice.optString(KEY_CURRENCY_CODE, "");
+                if (saleInfo != null) {
+                    isEbook = saleInfo.optBoolean(KEY_IS_EBOOK);
+                    //Certain objects are available only available if eBook is avilable. Hence the optJSONObject
+                    JSONObject listPrice = saleInfo.optJSONObject(KEY_LIST_PRICE);
+                    if (listPrice != null) {
+                        amount = listPrice.optInt(KEY_AMOUNT, 0);
+                        currency = listPrice.optString(KEY_CURRENCY_CODE, "");
+                    }
                 }
 
                 //Extract Access Info
-                boolean isEpub = accessInfo.getJSONObject(KEY_EPUB).getBoolean(KEY_IS_AVAILABLE);
-                boolean isPdf = accessInfo.getJSONObject(KEY_PDF).getBoolean(KEY_IS_AVAILABLE);
+                if (accessInfo != null) {
+                    JSONObject epubJson = accessInfo.optJSONObject(KEY_EPUB);
+                    if (epubJson != null) isEpub = epubJson.optBoolean(KEY_IS_AVAILABLE);
+                    JSONObject pdfJson = accessInfo.optJSONObject(KEY_PDF);
+                    if (pdfJson != null) isPdf = pdfJson.optBoolean(KEY_IS_AVAILABLE);
+                }
 
-                Book book = new Book(title, author, publisher, publishedDate, description, pageCount, printType, category, rating, thumbnail, amount, currency, isEbook, isEpub, isPdf);
+                Book book = new Book(
+                        title, author, publisher, publishedDate,
+                        description, pageCount, printType, category,
+                        rating, thumbnail, amount, currency,
+                        isEbook, isEpub, isPdf
+                );
                 books.add(book);
             }
         } catch (JSONException e) {

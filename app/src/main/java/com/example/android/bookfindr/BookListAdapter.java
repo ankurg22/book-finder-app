@@ -1,10 +1,11 @@
 package com.example.android.bookfindr;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 
 import com.example.android.bookfindr.databinding.ListItemBookBinding;
 
@@ -14,10 +15,11 @@ import java.util.ArrayList;
  * Created by ankurg22 on 5/8/17.
  */
 
-public class BookListAdapter extends BaseAdapter {
+public class BookListAdapter extends ArrayAdapter<Book> {
     private ArrayList<Book> books;
 
-    public BookListAdapter(ArrayList<Book> books) {
+    public BookListAdapter(Context context, ArrayList<Book> books) {
+        super(context, 0, books);
         this.books = books;
     }
 
@@ -29,7 +31,7 @@ public class BookListAdapter extends BaseAdapter {
         if (convertView == null) {
             ListItemBookBinding binding = DataBindingUtil.inflate(inflater, R.layout.list_item_book, parent, false);
             convertView = binding.getRoot();
-            viewHolder = new ViewHolder(binding);
+            viewHolder = new ViewHolder(binding, position % 2 == 0);
             convertView.setTag(viewHolder);
         } else viewHolder = (ViewHolder) convertView.getTag();
         viewHolder.bind(books.get(position));
@@ -38,30 +40,17 @@ public class BookListAdapter extends BaseAdapter {
 
     private class ViewHolder {
         private ListItemBookBinding itemBinding;
+        private boolean isEven;
 
-        public ViewHolder(ListItemBookBinding binding) {
+        public ViewHolder(ListItemBookBinding binding, boolean even) {
             this.itemBinding = binding;
+            this.isEven = even;
         }
 
         public void bind(Book book) {
             itemBinding.setBook(book);
+            itemBinding.setIsEven(isEven);
             itemBinding.executePendingBindings();
         }
     }
-
-    @Override
-    public int getCount() {
-        return books.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return books.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-
 }

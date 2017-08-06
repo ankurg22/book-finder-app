@@ -7,6 +7,12 @@
         <variable
             name="book"
             type="com.example.android.bookfindr.Book"/>
+
+        <variable
+            name="isEven"
+            type="boolean"/>
+
+        <import type="android.view.View"/>
     </data>
 
     <RelativeLayout
@@ -18,10 +24,11 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
+                android:id="@+id/card_frame"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardBackgroundColor="@{isEven ? @color/shade : @color/colorPrimary}"
                 app:cardCornerRadius="4dp"
                 app:cardElevation="5dp"
                 app:contentPadding="8dp">
@@ -35,6 +42,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minLines="2"
+                        android:maxLines="3"
                         android:text="@{book.title}"
                         android:textAppearance="?android:textAppearanceMedium"
                         android:textColor="@android:color/white"/>
@@ -52,23 +61,82 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:isIndicator="true"
-                        android:numStars="@{book.rating}"/>
+                        android:rating="@{Float.parseFloat(Double.toString(book.rating))}"/>
+
+                    <TextView
+                        android:id="@+id/price_frame"
+                        android:layout_width="100dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="end"
+                        android:layout_weight="1"
+                        android:background="@{isEven ? @color/shadeDark : @color/colorPrimaryDark}"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="@{book.ebook ? book.currency + book.price : @string/nfs}"
+                        android:textAppearance="?android:textAppearanceSmallInverse"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="104dp"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorAccent"
+                        android:visibility="@{book.epub? View.VISIBLE: View.INVISIBLE}">
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="1dp"
+                            android:background="@{isEven ? @color/shade : @color/colorPrimary}"
+                            android:gravity="center"
+                            android:text="@string/epub"
+                            android:textAllCaps="true"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="12sp"/>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:background="@color/colorAccent"
+                        android:visibility="@{book.pdf? View.VISIBLE: View.INVISIBLE}">
+
+                        <TextView
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="1dp"
+                            android:background="@{isEven ? @color/shade : @color/colorPrimary}"
+                            android:gravity="center"
+                            android:text="@string/pdf"
+                            android:textAllCaps="true"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="12sp"/>
+                    </FrameLayout>
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/image_frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginStart="25dp"
-            android:background="@color/colorPrimaryDark">
+            android:background="@{isEven ? @color/shadeDark : @color/colorPrimaryDark}">
 
             <ImageView
                 android:layout_width="106dp"
                 android:layout_height="136dp"
                 android:padding="10dp"
-                android:scaleType="centerInside"
+                android:scaleType="centerCrop"
                 app:image_url="@{book.thumbnail}"/>
         </FrameLayout>
 

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BookFindr</string>
+    <string name="nfs">Not for sale</string>
+    <string name="epub">epub</string>
+    <string name="pdf">pdf</string>
+    <string name="hint">Enter query here</string>
+    <string name="query_error">Do not enter special characters.</string>
+    <string name="empty_books">No books found for the requested term. Please go back search with other keywords</string>
+    <string name="no_internet">No internet detected. Please connect to internet first.</string>
+    <string name="search">Search</string>
 </resources>

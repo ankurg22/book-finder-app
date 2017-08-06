@@ -7,23 +7,66 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:background="@color/background">
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progressTint="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/text_empty"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@drawable/shader">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="casual"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="@string/app_name"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="24sp"/>
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
 
         <ListView
             android:id="@+id/list_books"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:dividerHeight="10dp"
-            android:divider="@android:color/transparent"/>
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="64dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp"/>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_search"
+            android:layout_gravity="bottom|right|end"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:src="@drawable/search"
+            app:elevation="4dp"
             app:fabSize="normal"
-            app:layout_anchorGravity="bottom|right"
+            app:rippleColor="@color/shade"
             app:useCompatPadding="true"/>
     </android.support.design.widget.CoordinatorLayout>
 </layout>
