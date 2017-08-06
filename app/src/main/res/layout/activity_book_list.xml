@@ -15,15 +15,13 @@
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:progressTint="@color/colorPrimary"/>
+            android:layout_gravity="center"/>
 
         <TextView
             android:id="@+id/text_empty"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"/>
+            style="@style/EmptyTextStyle"
+            android:layout_width="@dimen/text_empty_width"
+            android:layout_height="wrap_content"/>
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -35,34 +33,24 @@
                 android:background="@drawable/shader">
 
                 <TextView
+                    style="@style/ToolBarTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="casual"
-                    android:gravity="center_horizontal|bottom"
-                    android:text="@string/app_name"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="24sp"/>
+                    android:text="@string/app_name"/>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
         <ListView
             android:id="@+id/list_books"
+            style="@style/ListViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="64dp"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="10dp"/>
+            android:layout_height="match_parent"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_search"
+            style="@style/FabStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right|end"
-            android:layout_margin="16dp"
-            android:clickable="true"
             android:src="@drawable/search"
             app:elevation="4dp"
             app:fabSize="normal"

@@ -12,7 +12,8 @@ import com.example.android.bookfindr.databinding.ListItemBookBinding;
 import java.util.ArrayList;
 
 /**
- * Created by ankurg22 on 5/8/17.
+ * Created by Ankur Gupta on 5/8/17.
+ * guptaankur.gupta0@gmail.com
  */
 
 public class BookListAdapter extends ArrayAdapter<Book> {

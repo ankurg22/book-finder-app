@@ -25,35 +25,32 @@
 
             <android.support.v7.widget.CardView
                 android:id="@+id/card_frame"
+                style="@style/CardStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 app:cardBackgroundColor="@{isEven ? @color/shade : @color/colorPrimary}"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="5dp"
-                app:contentPadding="8dp">
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="@dimen/card_elevation"
+                app:contentPadding="@dimen/card_content_padding">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="136dp"
+                    android:layout_marginLeft="@dimen/layout_details_leftmargin"
+                    android:layout_marginStart="@dimen/layout_details_leftmargin"
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/BookTitleStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minLines="2"
-                        android:maxLines="3"
-                        android:text="@{book.title}"
-                        android:textAppearance="?android:textAppearanceMedium"
-                        android:textColor="@android:color/white"/>
+                        android:text="@{book.title}"/>
 
                     <TextView
+                        style="@style/AuthorTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{book.author}"
-                        android:textAppearance="?android:textAppearanceSmall"
-                        android:textColor="@android:color/white"/>
+                        android:text="@{book.author}"/>
 
                     <RatingBar
                         android:id="@+id/ratingBar"
@@ -65,22 +62,19 @@
 
                     <TextView
                         android:id="@+id/price_frame"
+                        style="@style/PriceTextStyle"
                         android:layout_width="100dp"
                         android:layout_height="0dp"
-                        android:layout_gravity="end"
-                        android:layout_weight="1"
                         android:background="@{isEven ? @color/shadeDark : @color/colorPrimaryDark}"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="@{book.ebook ? book.currency + book.price : @string/nfs}"
-                        android:textAppearance="?android:textAppearanceSmallInverse"/>
+                        android:text="@{book.ebook ? book.currency + book.price : @string/nfs}"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginTop="104dp"
+                    android:layout_marginLeft="@dimen/available_margin_left"
+                    android:layout_marginStart="@dimen/available_margin_left"
+                    android:layout_marginTop="@dimen/available_margin_top"
                     android:orientation="horizontal">
 
                     <FrameLayout
@@ -90,34 +84,27 @@
                         android:visibility="@{book.epub? View.VISIBLE: View.INVISIBLE}">
 
                         <TextView
+                            style="@style/FormatStyle"
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
                             android:background="@{isEven ? @color/shade : @color/colorPrimary}"
-                            android:gravity="center"
-                            android:text="@string/epub"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="12sp"/>
+                            android:text="@string/epub"/>
                     </FrameLayout>
 
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginLeft="@dimen/foarmat_left_margin"
+                        android:layout_marginStart="@dimen/foarmat_left_margin"
                         android:background="@color/colorAccent"
                         android:visibility="@{book.pdf? View.VISIBLE: View.INVISIBLE}">
 
                         <TextView
+                            style="@style/FormatStyle"
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
                             android:background="@{isEven ? @color/shade : @color/colorPrimary}"
-                            android:gravity="center"
-                            android:text="@string/pdf"
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="12sp"/>
+                            android:text="@string/pdf"/>
                     </FrameLayout>
 
                 </LinearLayout>
@@ -128,14 +115,14 @@
             android:id="@+id/image_frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginLeft="@dimen/image_frame_margin"
+            android:layout_marginStart="@dimen/image_frame_margin"
             android:background="@{isEven ? @color/shadeDark : @color/colorPrimaryDark}">
 
             <ImageView
-                android:layout_width="106dp"
-                android:layout_height="136dp"
-                android:padding="10dp"
+                android:layout_width="@dimen/list_image_width"
+                android:layout_height="@dimen/list_image_height"
+                android:padding="@dimen/padding_image"
                 android:scaleType="centerCrop"
                 app:image_url="@{book.thumbnail}"/>
         </FrameLayout>

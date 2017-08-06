@@ -1,13 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -15,4 +7,81 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="EditTextStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:hint">@string/hint</item>
+        <item name="android:padding">@dimen/padding_edittext</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="EmptyTextStyle">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ToolBarTextStyle">
+        <item name="android:fontFamily">casual</item>
+        <item name="android:gravity">center_horizontal|bottom</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/toolbar_text_size</item>
+    </style>
+
+    <style name="ListViewStyle">
+        <item name="android:layout_marginBottom">@dimen/list_padding_eight</item>
+        <item name="android:layout_marginLeft">@dimen/list_padding_eight</item>
+        <item name="android:layout_marginRight">@dimen/list_padding_eight</item>
+        <item name="android:layout_marginTop">@dimen/list_padding_top</item>
+        <item name="android:divider">@android:color/transparent</item>
+        <item name="android:dividerHeight">@dimen/divider_height</item>
+    </style>
+
+    <style name="FabStyle">
+        <item name="android:layout_gravity">bottom|right|end</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="CardStyle">
+        <item name="android:layout_marginTop">@dimen/card_margin_top</item>
+    </style>
+
+    <style name="BookTitleStyle">
+        <item name="android:minLines">2</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AuthorTextStyle">
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="PriceTextStyle">
+        <item name="android:layout_gravity">end</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/price_text_padding</item>
+        <item name="android:textAppearance">?android:textAppearanceSmallInverse</item>
+    </style>
+
+    <style name="FormatStyle">
+        <item name="android:layout_margin">@dimen/format_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/format_text</item>
+    </style>
+
+
+    <dimen name="padding_edittext">16dp</dimen>
+    <dimen name="toolbar_text_size">24sp</dimen>
+    <dimen name="list_padding_eight">8dp</dimen>
+    <dimen name="list_padding_top">64dp</dimen>
+    <dimen name="divider_height">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="card_margin_top">32dp</dimen>
+    <dimen name="price_text_padding">8dp</dimen>
+    <dimen name="format_margin">1dp</dimen>
+    <dimen name="format_text">12sp</dimen>
 </resources>

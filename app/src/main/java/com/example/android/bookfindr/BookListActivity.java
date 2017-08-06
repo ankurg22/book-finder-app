@@ -19,10 +19,25 @@ import com.example.android.bookfindr.databinding.ActivityBookListBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Ankur Gupta on 4/8/17.
+ * guptaankur.gupta0@gmail.com
+ */
+
 public class BookListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Book>> {
-    private static String REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=";
+    private String REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=";
     private ActivityBookListBinding binding;
     private BookListAdapter adapter;
+
+    /**
+     * Since Data Binding library was not able to load images so I Google'd and found solution
+     * https://stackoverflow.com/a/35809319/6494628
+     * This code is required only once in whole App.
+     */
+    @BindingAdapter("bind:image_url")
+    public static void loadImage(ImageView imageView, String url) {
+        Glide.with(imageView.getContext()).load(url).crossFade(1000).into(imageView);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +71,7 @@ public class BookListActivity extends AppCompatActivity implements LoaderManager
             String query = intent.getStringExtra("QUERY");
             REQUEST_URL += query;
             LoaderManager loaderManager = getLoaderManager();
-            loaderManager.initLoader(1, null, this);
+            loaderManager.restartLoader(1, null, this);
         } else {
             binding.progress.setVisibility(View.GONE);
             binding.textEmpty.setText(getString(R.string.no_internet));
@@ -100,15 +115,5 @@ public class BookListActivity extends AppCompatActivity implements LoaderManager
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         return networkInfo != null && networkInfo.isConnected();
-    }
-
-    /**
-     * Since Data Binding library was not able to load images so I Google'd and found solution
-     * https://stackoverflow.com/a/35809319/6494628
-     * This code is required only once in whole App.
-     */
-    @BindingAdapter("bind:image_url")
-    public static void loadImage(ImageView imageView, String url) {
-        Glide.with(imageView.getContext()).load(url).crossFade(1000).into(imageView);
     }
 }

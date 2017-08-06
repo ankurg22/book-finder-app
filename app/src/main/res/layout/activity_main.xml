@@ -9,9 +9,17 @@
         android:background="@drawable/shader"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/edit_search"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="44dp"
+            android:src="@drawable/book"/>
+
         <Button
             android:id="@+id/submit"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/button_search_width"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edit_search"
             android:layout_centerHorizontal="true"
@@ -20,14 +28,10 @@
 
         <EditText
             android:id="@+id/edit_search"
-            android:layout_width="200dp"
+            style="@style/EditTextStyle"
+            android:layout_width="@dimen/edit_text_width"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:hint="@string/hint"
-            android:inputType="textNoSuggestions"
-            android:padding="16dp"
-            android:textColor="@color/colorAccent"/>
+            android:layout_centerInParent="true"/>
 
     </RelativeLayout>
 </layout>

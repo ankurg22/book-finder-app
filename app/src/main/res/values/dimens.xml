@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_search_width">150dp</dimen>
+    <dimen name="edit_text_width">200dp</dimen>
+    <dimen name="text_empty_width">150dp</dimen>
+    <dimen name="card_radius">4dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="card_content_padding">8dp</dimen>
+    <dimen name="layout_details_leftmargin">136dp</dimen>
+    <dimen name="available_margin_left">18dp</dimen>
+    <dimen name="available_margin_top">104dp</dimen>
+    <dimen name="foarmat_left_margin">2dp</dimen>
+    <dimen name="image_frame_margin">25dp</dimen>
+    <dimen name="list_image_width">106dp</dimen>
+    <dimen name="list_image_height">136dp</dimen>
+    <dimen name="padding_image">10dp</dimen>
+</resources>

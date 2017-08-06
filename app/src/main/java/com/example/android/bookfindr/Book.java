@@ -3,7 +3,8 @@ package com.example.android.bookfindr;
 import java.io.Serializable;
 
 /**
- * Created by ankurg22 on 4/8/17.
+ * Created by Ankur Gupta on 4/8/17.
+ * guptaankur.gupta0@gmail.com
  */
 
 public class Book implements Serializable {

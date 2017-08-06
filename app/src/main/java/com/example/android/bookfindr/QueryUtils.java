@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ankurg22 on 4/8/17.
+ * Created by Ankur Gupta on 4/8/17.
+ * guptaankur.gupta0@gmail.com
  */
 
 public class QueryUtils {
@@ -40,7 +41,6 @@ public class QueryUtils {
     private static final String KEY_IMAGE_LINKS = "imageLinks";
     private static final String KEY_THUMBNAIL = "thumbnail";
     private static final String KEY_SALE_INFO = "saleInfo";
-    private static final String KEY_SALEABILITY = "saleability";
     private static final String KEY_IS_EBOOK = "isEbook";
     private static final String KEY_LIST_PRICE = "listPrice";
     private static final String KEY_AMOUNT = "amount";
